@@ -11,7 +11,9 @@
     "require": {
         "php": "^8.2",
         "laravel/framework": "^12.0",
-        "laravel/tinker": "^2.10.1"
+        "laravel/tinker": "^2.10.1",
+        "spatie/laravel-data": "^4.13",
+        "wotz/laravel-swagger-ui": "^1.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -20,7 +22,11 @@
         "laravel/sail": "^1.41",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
-        "phpunit/phpunit": "^11.5.3"
+        "php-parallel-lint/php-console-highlighter": "^1.0",
+        "phpcompatibility/php-compatibility": "^9.3",
+        "phpunit/phpunit": "^11.5.3",
+        "slevomat/coding-standard": "^8.16",
+        "squizlabs/php_codesniffer": "*"
     },
     "autoload": {
         "psr-4": {
@@ -35,6 +41,8 @@
         }
     },
     "scripts": {
+        "phpcs": "@php vendor/bin/phpcs -s -p --no-cache",
+        "phpcbf": "@php vendor/bin/phpcbf -p",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
@@ -65,6 +73,7 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
             "pestphp/pest-plugin": true,
             "php-http/discovery": true
         }
