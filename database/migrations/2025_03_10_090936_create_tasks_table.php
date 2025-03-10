@@ -19,7 +19,7 @@ return new class extends Migration
                 $table->id();
                 $table->string('title', 255);
                 $table->text('description');
-                $table->dateTime('due_date');
+                $table->dateTime('due_date')->nullable();
                 $table->dateTime('create_date');
                 $table->string('priority');
                 $table->string('category');
