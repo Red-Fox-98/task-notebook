@@ -14,6 +14,7 @@ class IndexRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'perPage' => [ 'int' ],
             'search' => [ 'string' ],
             'sort' => [ 'string', new Enum(TaskSortEnum::class) ],
         ];

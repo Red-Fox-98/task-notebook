@@ -8,7 +8,6 @@ use App\Data\Task\CreateRequestData;
 use App\Data\Task\IndexRequestData;
 use App\Data\Task\UpdateRequestData;
 use App\Models\Task;
-use Illuminate\Database\Eloquent\Collection;
 
 class TaskService
 {
@@ -27,11 +26,14 @@ class TaskService
         );
     }
 
-    final public function index(IndexRequestData $request): Collection
+    final public function index(IndexRequestData $request): array
     {
         $search = '%' . $request->search . '%';
 
-        return Task::query()->where('title', 'LIKE', $search)->get();
+        return Task::query()->where('title', 'LIKE', $search)
+            ->orderByDesc($request->sort)
+            ->paginate($request->perPage ?? config('app.pagination.perPage'))
+            ->items();
     }
 
     final public function show(int $id): ?Task
